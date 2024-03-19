@@ -2,7 +2,7 @@
 ###############                     CONFIG                        ##############
 ################################################################################
 
-NAME := brainzzzz
+NAME := phonebook
 CC := c++ 
 CFLAGS = -Wextra -Wall -Werror -std=c++98 -MMD -MP $(addprefix -I, $(INC_DIRS))
 
@@ -31,7 +31,7 @@ vpath %.cpp $(SRC_DIRS)
 ###############                  SOURCE FILES                     ##############
 ################################################################################
 
-SRCS := main.cpp Zombie.cpp randomChump.cpp
+SRCS := main.cpp
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.cpp=%.o))
 

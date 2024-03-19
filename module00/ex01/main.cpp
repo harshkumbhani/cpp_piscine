@@ -5,15 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkumbhan <hkumbhan@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 08:45:43 by hkumbhan          #+#    #+#             */
-/*   Updated: 2024/03/19 18:51:07 by hkumbhan         ###   ########.fr       */
+/*   Created: 2024/03/19 17:18:54 by hkumbhan          #+#    #+#             */
+/*   Updated: 2024/03/19 17:27:00 by hkumbhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
 
 int	main(void)
 {
-	return (0);
-}
+	std::string input;
 
+	while (1)
+	{
+		std::cin >> input;
+		if (input == "EXIT")
+			break ;
+	}
+	return (EXIT_SUCCESS);
+}
