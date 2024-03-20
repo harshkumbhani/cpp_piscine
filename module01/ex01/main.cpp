@@ -1,5 +1,4 @@
 #include "Zombie.hpp"
-#include <cstdlib>
 
 #define N 5
 
@@ -22,5 +21,5 @@ int	main(void)
 	std::cout << "||             ~ Disbanding The Horde ~        ||" << std::endl;
 	std::cout << "=================================================" << std::endl;
 	delete [] horde;
-	return EXIT_SUCCESS;
+	return (0);
 }

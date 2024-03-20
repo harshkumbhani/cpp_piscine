@@ -6,7 +6,7 @@
 /*   By: hkumbhan <hkumbhan@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 08:45:43 by hkumbhan          #+#    #+#             */
-/*   Updated: 2024/03/20 09:00:40 by hkumbhan         ###   ########.fr       */
+/*   Updated: 2024/03/20 09:51:41 by hkumbhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(void)
 	std::cout << "-------------------------------------------------" << std::endl;
 	delete heap_zombie_1;
 	delete heap_zombie_2;
-	return EXIT_SUCCESS;
 	return (0);
 }
 
