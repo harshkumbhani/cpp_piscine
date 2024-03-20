@@ -1,4 +1,5 @@
 #include "Zombie.hpp"
+#include <cstdlib>
 
 #define N 5
 
