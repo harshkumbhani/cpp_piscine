@@ -7,7 +7,7 @@ Zombie::Zombie(std::string name) : name(name)
 }
 
 Zombie::~Zombie(void){
-	std::cout << this->name << ": Default destructor" << std::endl;
+	std::cout << this->name << ": Died" << std::endl;
 	return ;
 }
 

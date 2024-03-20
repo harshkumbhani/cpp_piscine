@@ -31,7 +31,7 @@ vpath %.cpp $(SRC_DIRS)
 ###############                  SOURCE FILES                     ##############
 ################################################################################
 
-SRCS := main.cpp Zombie.cpp randomChump.cpp
+SRCS := main.cpp Zombie.cpp randomChump.cpp newZombie.cpp
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.cpp=%.o))
 
