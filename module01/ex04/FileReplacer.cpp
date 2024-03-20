@@ -25,9 +25,7 @@ void	FileReplacer::replace(){
 		std::cerr << "Could not create output file: " << _filename + ".replace" << std::endl;
 		return ;
 	}
-	std::stringstream buffer;
-	buffer << inputFile.rdbuf();
-	_buff = buffer.str();
+	_buff.assign(std::istreambuf_iterator<char>(inputFile), std::istreambuf_iterator<char>());
 	_outfile = replaceOccurence(_buff);
 	outputFile << _outfile;
 	inputFile.close();
@@ -38,7 +36,7 @@ void	FileReplacer::replace(){
 std::string	FileReplacer::replaceOccurence(const std::string &source)
 {
 	std::string	result;
-	size_t	lastPos = 0, findPos;
+	size_t		lastPos = 0, findPos;
 
 	while ((findPos = source.find(_searchStr, lastPos)) != std::string::npos)
 	{
