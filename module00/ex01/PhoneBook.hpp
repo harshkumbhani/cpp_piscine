@@ -40,6 +40,11 @@ void PhoneBook::newEntry(void) {
 }
 
 void PhoneBook::displayContactSummary(void) const {
+  if (_currentIndex == 0)
+  {
+    std::cout << "No Contacts found! Add some to the phonebook!" << std::endl;
+    return ;
+  }
   std::cout << "|-------------------------------------------|\n"
             << std::right << "|" << std::setw(10) << "Index"
             << "|" << std::setw(10) << "First Name"
@@ -73,7 +78,7 @@ void PhoneBook::displayContactDetails(void) const {
 
   while (validInputFlag == false){
     std::cout << "Enter the index of the contact to display: ";
-    getline(std::cin, inputLine);
+    std::getline(std::cin, inputLine);
     std::istringstream inputStream(inputLine);
 
     if (inputStream >> index && inputStream.eof()){

@@ -1,5 +1,6 @@
 *.vscode
 *.o
 *.d
+*.ccls-cache
 megaphone
 brainzzzz

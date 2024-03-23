@@ -9,11 +9,15 @@ std::string	to_upper(std::string& input)
 	return input;
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	PhoneBook	book;
 	std::string input;
 
+	if (argc != 1){
+		std::cout << "Usage: < " << argv[0] << "  >" << std::endl;
+		return EXIT_FAILURE;
+	}
 	std::cout << "Command list: <  ADD | SEARCH | EXIT  >" << std::endl;
 	while (true)
 	{

@@ -8,6 +8,7 @@
 #include <limits>
 #include <iomanip>
 #include <sstream>
+#include <cstdlib>
 
 #define	MAX_ENTRIES	8
 

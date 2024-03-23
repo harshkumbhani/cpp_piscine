@@ -4,56 +4,51 @@ Contact::Contact() {}
 
 Contact::~Contact() {}
 
-std::string	Contact::getFirstName(void) const
-{
-	return _firstName;
-}
+std::string Contact::getFirstName(void) const { return _firstName; }
 
-std::string	Contact::getLastName(void) const
-{
-	return _lastName;
-}
+std::string Contact::getLastName(void) const { return _lastName; }
 
-std::string	Contact::getNickName(void) const
-{
-	return _nickName;
-}
+std::string Contact::getNickName(void) const { return _nickName; }
 
-std::string	Contact::getPhoneNumber(void) const
-{
-	return _phoneNumber;
-}
+std::string Contact::getPhoneNumber(void) const { return _phoneNumber; }
 
-std::string	Contact::getDarkSecret(void) const
-{
-	return _darkestSecret;
-}
+std::string Contact::getDarkSecret(void) const { return _darkestSecret; }
 
-void	Contact::create_new_entry(){
-	const std::string	fields[5] = {
-		"First Name: ",
-		"Last Name: ",
-		"Nick Name: ",
-		"Phone Number: ",
-		"Darkest Secret: "
-	};
+void Contact::create_new_entry() {
+  const std::string fields[5] = {"First Name: ", "Last Name: ", "Nick Name: ",
+                                 "Phone Number: ", "Darkest Secret: "};
 
-	std::string	*data[5] = {
-		&_firstName,
-		&_lastName,
-		&_nickName,
-		&_phoneNumber,
-		&_darkestSecret
-	};
-	std::cout << "\nEnter the details as followed\n" << std::endl;
-	for (int i = 0; i < 5; i++)
-	{
-		std::string	input;
-		do {
-			std::cout << fields[i];
-			std::getline(std::cin, input);
-		} while (input.find_last_not_of(" \n\t\v\f\r") == std::string::npos);
-		*data[i] = input;
-	}
-	std::cout << std::endl;
+  std::string *data[5] = {&_firstName, &_lastName, &_nickName, &_phoneNumber,
+                          &_darkestSecret};
+  std::cout << "\nEnter the details as followed\n" << std::endl;
+  for (int i = 0; i < 5; i++) {
+    bool  isValid = false;
+    std::string input;
+    do {
+      std::cout << fields[i];
+      std::getline(std::cin, input);
+      if (i == 3) {
+        std::istringstream inputStream(input);
+        long number;
+        inputStream >> number;
+        if (inputStream.fail() == false && inputStream.eof() == true
+          && number >= 0){
+          isValid = true;
+      } else {
+          if (number < 0)
+            std::cout << "Negative Number entered." << std::endl;
+          else if(number == std::numeric_limits<long>::max())
+              std::cout << "Max limit for digits reached! Retry" << std::endl;
+          else 
+            std::cout << "Non numeric character detected! Please enter valid"
+                << " Phone Number." << std::endl;
+          isValid = false;
+        } } else {
+        isValid = input.empty() == false
+          && input.find_last_not_of(" \n\t\v\f\r") != std::string::npos;
+      }
+    } while (isValid == false);
+    *data[i] = input;
+  }
+  std::cout << "\nEntry created successfully!"  << std::endl;
 }
