@@ -20,7 +20,7 @@ private:
 	std::string	_nickName;
 	std::string	_phoneNumber;
 	std::string	_darkestSecret;
-
+	std::string	enterFieldData(const std::string& field, int &i) const;
 public:
 	Contact();
 	~Contact();
