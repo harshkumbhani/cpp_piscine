@@ -27,7 +27,7 @@ void PhoneBook::displayContactSummary(void) const {
     return;
   }
   std::cout << "|-------------------------------------------|\n"
-             << "|" << std::setw(10) << "Index"
+            << "|" << std::setw(10) << "Index"
             << "|" << std::setw(10) << "First Name"
             << "|" << std::setw(10) << "Last Name"
             << "|" << std::setw(10) << "Nick Name"
@@ -35,12 +35,11 @@ void PhoneBook::displayContactSummary(void) const {
             << "|-------------------------------------------|" << std::endl;
 
   for (size_t i = 0; i < _currentIndex; i++) {
-    std::cout << "|" << std::setw(10) << i + 1 << "|"
-              << std::setw(10) << truncateField(contacts[i].getFirstName())
+    std::cout << "|" << std::setw(10) << i + 1 << "|" << std::setw(10)
+              << truncateField(contacts[i].getFirstName()) << "|"
+              << std::setw(10) << truncateField(contacts[i].getLastName())
               << "|" << std::setw(10)
-              << truncateField(contacts[i].getLastName()) << "|"
-              << std::setw(10) << truncateField(contacts[i].getNickName())
-              << "|" << std::endl;
+              << truncateField(contacts[i].getNickName()) << "|" << std::endl;
   }
   std::cout << "|-------------------------------------------|" << std::endl;
   displayContactDetails();
