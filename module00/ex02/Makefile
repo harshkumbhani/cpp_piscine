@@ -4,7 +4,7 @@
 
 NAME := job
 CC := c++ 
-CFLAGS = -Wextra -Wall -Werror -std=c++98 -MMD -MP $(addprefix -I, $(INC_DIRS))
+CFLAGS = -Wall -Werror -Wextra  -std=c++98 -MMD -MP $(addprefix -I, $(INC_DIRS))
 
 ################################################################################
 ###############                 PRINT OPTIONS                     ##############
