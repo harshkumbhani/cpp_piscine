@@ -23,9 +23,9 @@ bool Contact::processPhoneNb(const std::string &field,
     return true;
   } else {
     if (number < 0)
-      std::cout << "Negative " << field << " not Possible on Earth!" << std::endl;
+      std::cout << "Negative " << field << "not Possible on Earth!" << std::endl;
     else if (number == std::numeric_limits<long>::max())
-      std::cout << "Field " << field << " too big!!" << std::endl;
+      std::cout << field << "maybe accepted on Mars but not on Earth" << std::endl;
     else
       std::cout << "Non numeric character detected! Please enter valid"
                 << " Phone Number." << std::endl;
