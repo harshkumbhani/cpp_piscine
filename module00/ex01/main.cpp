@@ -22,7 +22,10 @@ int	main(int argc, char *argv[])
 	while (true)
 	{
 		std::cout << "Enter a command: ";
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input)){
+			std::cout << "Ctrl + D detected." << std::endl;
+			break ;
+		}
 		if (to_upper(input).compare("EXIT") == 0)
 			break ;
 		else if (to_upper(input).compare("ADD") == 0)

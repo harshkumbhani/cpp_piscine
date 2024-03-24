@@ -14,48 +14,57 @@ std::string Contact::getPhoneNumber(void) const { return _phoneNumber; }
 
 std::string Contact::getDarkSecret(void) const { return _darkestSecret; }
 
+bool Contact::processPhoneNb(const std::string &field,
+                             const std::string &input) const {
+  std::istringstream inputStream(input);
+  long number = 0;
+  if ((inputStream >> number).fail() == false && inputStream.eof() == true &&
+      number >= 0) {
+    return true;
+  } else {
+    if (number < 0)
+      std::cout << "Negative " << field << " not Possible on Earth!" << std::endl;
+    else if (number == std::numeric_limits<long>::max())
+      std::cout << "Field " << field << " too big!!" << std::endl;
+    else
+      std::cout << "Non numeric character detected! Please enter valid"
+                << " Phone Number." << std::endl;
+    return false;
+  }
+}
+
+bool  Contact::processOtherFields(const std::string &field,
+                                  std::string &input) const {
+  size_t  start = input.find_first_not_of(" \t\n\r\f\v\"");
+  size_t  end = input.find_last_not_of(" \t\n\r\f\v\"");
+
+  if (start == std::string::npos || end == std::string::npos)
+  {
+    std::cout << "Either " << field
+      << " is empty or found no valid name characters."
+      << std::endl;
+    return false;
+  }
+  input = input.substr(start, end - start + 1);
+  return true;
+}
+
 std::string Contact::enterFieldData(const std::string &field, int &i) const {
   bool isValid = false;
   std::string input;
   do {
     std::cout << field;
     std::getline(std::cin, input);
+
+    if (input.empty() == true) {
+      std::cout << "Field: " << field
+        << " cannot be empty, Please enter a value." << std::endl;
+      continue;
+    }
     if (i == 3) {
-      std::istringstream inputStream(input);
-      long number;
-      inputStream >> number;
-      if (inputStream.fail() == false && inputStream.eof() == true &&
-          number >= 0) {
-        isValid = true;
-      } else {
-        if (number < 0)
-          std::cout << field << "cannot be Negative!" << std::endl;
-        else if (number == std::numeric_limits<long>::max())
-          std::cout << "Max limit for digits reached! Retry" << std::endl;
-        else
-          std::cout << "Non numeric character detected! Please enter valid"
-                    << " Phone Number." << std::endl;
-        isValid = false;
-      }
+      isValid = processPhoneNb(field, input);
     } else {
-      std::string::iterator it;
-      isValid = input.empty() == false &&
-                input.find_last_not_of(" \n\t\v\f\r") != std::string::npos;
-      if (input.compare("\"\"") == 0) {
-        isValid = false;
-        std::cout << field << "cannot be an empty." << std::endl;
-      } else if (input[0] == '\"' && input[input.length() - 1] == '\"') {
-        input = input.substr(1, input.length() - 2);
-      } else {
-        for (it = input.begin(); it != input.end(); it++) {
-          if (*it == '\"') {
-            std::cout << "Illegal use of \" character detected or trailing"
-                      << " spaces / characters after \"" << std::endl;
-            isValid = false;
-            break;
-          }
-        }
-      }
+      isValid = processOtherFields(field, input);
     }
   } while (isValid == false);
   return input;
