@@ -11,7 +11,7 @@ ScavTrap::ScavTrap(std::string name) :
 }
 
 ScavTrap::~ScavTrap() {
-  std::cout << "ScavTrap destrucor called."<< std::endl;
+  std::cout << "ScavTrap destructor called."<< std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &src) : ClapTrap(src) {
