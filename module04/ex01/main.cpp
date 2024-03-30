@@ -2,61 +2,51 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
-int main(void) {
-  std::cout << "╔══════════════════════════════╗" << std::endl;
-  std::cout << "║ Polymorphism with Virtual    ║" << std::endl;
-  std::cout << "╚══════════════════════════════╝" << std::endl;
+int main() {
+    std::cout << "╔══════════════════════════════╗" << std::endl;
+    std::cout << "║ Polymorphism with Virtual    ║" << std::endl;
+    std::cout << "╚══════════════════════════════╝" << std::endl;
 
-  // Animal instances demonstrating polymorphism
-  const Animal *genericAnimal = new Animal();
-  const Animal *cat = new Cat();
-  const Animal *dog = new Dog();
+    Animal* dog = new Dog();
+    Animal* cat = new Cat();
 
-  // Display types and make sounds using polymorphism
-  std::cout << "╔══════════════════════════════╗" << std::endl;
-  std::cout << "║           Get Types          ║" << std::endl;
-  std::cout << "╚══════════════════════════════╝" << std::endl;
+    dog->makeSound(); // Expected: Dog-specific sound
+    cat->makeSound(); // Expected: Cat-specific sound
 
-  std::cout << cat->getType() << std::endl; // Type is part of sound output
-  std::cout << dog->getType() << std::endl; // Type is part of sound output
+    delete dog;
+    delete cat;
 
-  std::cout << "╔══════════════════════════════╗" << std::endl;
-  std::cout << "║         Make Sound           ║" << std::endl;
-  std::cout << "╚══════════════════════════════╝" << std::endl;
+    std::cout << "╔══════════════════════════════╗" << std::endl;
+    std::cout << "║   Brain Idea Manipulation    ║" << std::endl;
+    std::cout << "╚══════════════════════════════╝" << std::endl;
 
-  genericAnimal->makeSound();
-  cat->makeSound();
-  dog->makeSound();
+    Dog *originalDog = new Dog();
+    originalDog->setIdea(1, "Chase squirrels");
+    std::cout << "Original Dog's first idea: " << originalDog->getIdea(1) << std::endl;
 
-  // Clean up
-  delete genericAnimal;
-  delete cat;
-  delete dog;
+    Dog *copiedDog = new Dog(*originalDog); // Deep copy
+    std::cout << "Copied Dog's first idea before change: " << copiedDog->getIdea(1) << std::endl;
+    copiedDog->setIdea(90, "Sleep in the sun");
+    std::cout << "Original Dog's first idea remains: " << originalDog->getIdea(90) << std::endl;
 
-  // ASCII art for section division
-  std::cout << "\n╔══════════════════════════════╗" << std::endl;
-  std::cout << "║ Non-Polymorphic Behavior     ║" << std::endl;
-  std::cout << "╚══════════════════════════════╝" << std::endl;
+    delete originalDog;
+    delete copiedDog;
 
-  // WrongAnimal instances demonstrating static binding
-  const WrongAnimal *wrongGenericAnimal = new WrongAnimal();
-  const WrongAnimal *wrongCat = new WrongCat();
+    std::cout << "╔══════════════════════════════╗" << std::endl;
+    std::cout << "║  Assignment Operator Check   ║" << std::endl;
+    std::cout << "╚══════════════════════════════╝" << std::endl;
 
-  // Display types and make sounds without polymorphism
-  std::cout << "╔══════════════════════════════╗" << std::endl;
-  std::cout << "║           Get Types          ║" << std::endl;
-  std::cout << "╚══════════════════════════════╝" << std::endl;
-  std::cout << wrongCat->getType() << std::endl;
-  std::cout << "╔══════════════════════════════╗" << std::endl;
-  std::cout << "║         Make Sound           ║" << std::endl;
-  std::cout << "╚══════════════════════════════╝" << std::endl;
+    Cat *cat1 = new Cat();
+    cat1->setIdea(1, "Watch birds");
+    Cat *cat2 = new Cat();
+    *cat2 = *cat1; // Using assignment operator for deep copy
+    cat2->setIdea(1, "Knock over plants");
 
-  wrongGenericAnimal->makeSound();
-  wrongCat->makeSound();
+    std::cout << "Cat1's first idea after Cat2 changed: " << cat1->getIdea(1) << std::endl;
+    std::cout << "Cat2's first idea: " << cat2->getIdea(1) << std::endl;
 
-  // Clean up
-  delete wrongGenericAnimal;
-  delete wrongCat;
+    delete cat1;
+    delete cat2;
 
-  return 0;
+    return 1;
 }

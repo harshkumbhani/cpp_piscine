@@ -14,6 +14,8 @@ public:
   virtual ~Dog();
 
   virtual void makeSound(void) const;
+  std::string getIdea(int index) const;
+  void  setIdea(int index, const std::string& idea);
 };
 
 #endif

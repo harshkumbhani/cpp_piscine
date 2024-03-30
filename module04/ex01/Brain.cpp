@@ -23,13 +23,15 @@ Brain::~Brain() {
   printLog("Brain destructor called.", RED);
 }
 
-std::string Brain::getIdeas(int index) const {
+std::string Brain::getIdea(int index) const {
+  --index;
   if (index >= 0 && index < 100)
     return _ideas[index];
   return "Invalid Index";
 }
 
 void  Brain::setIdea(int index, const std::string &idea) {
+  --index;
   if (index >= 0 && index < 100)
     _ideas[index] = idea;
 }
