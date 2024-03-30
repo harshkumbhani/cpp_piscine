@@ -30,5 +30,9 @@ void Dog::makeSound(void) const {
 std::string Dog::getIdea(int index) const { return _brain->getIdea(index); }
 
 void Dog::setIdea(int index, const std::string &idea) {
-  return _brain->setIdea(index, idea);
+  _brain->setIdea(index, idea);
+}
+
+void  Dog::printIdeas(void) const {
+  _brain->printIdeas();
 }

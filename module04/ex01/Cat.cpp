@@ -30,5 +30,7 @@ void Cat::makeSound(void) const {
 std::string Cat::getIdea(int index) const { return _brain->getIdea(index); }
 
 void Cat::setIdea(int index, const std::string &idea) {
-  return _brain->setIdea(index, idea);
+  _brain->setIdea(index, idea);
 }
+
+void Cat::printIdeas(void) const { _brain->printIdeas(); }

@@ -36,3 +36,9 @@ void  Brain::setIdea(int index, const std::string &idea) {
     _ideas[index] = idea;
 }
 
+void  Brain::printIdeas(void) const {
+  for (int i = 0; i < 100; i++){
+    if (_ideas[i].empty() == false)
+      std::cout << "Idea #" << i + 1 << ": " << _ideas[i] << std::endl;
+  }
+}
