@@ -4,7 +4,10 @@ Ice::Ice() : AMateria("ice") {}
 
 Ice::Ice(const Ice &src) : AMateria(src) {}
 
-Ice &Ice::operator=(const Ice &rhs) { return *this; }
+Ice &Ice::operator=(const Ice &rhs) {
+  (void)rhs;
+  return *this;
+}
 
 Ice::~Ice() {}
 

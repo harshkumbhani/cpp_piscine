@@ -31,7 +31,7 @@ vpath %.cpp $(SRC_DIRS)
 ###############                  SOURCE FILES                     ##############
 ################################################################################
 
-SRCS := main.cpp 
+SRCS := main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:%.cpp=%.o))
 
@@ -43,7 +43,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(LOG) "Linking object files to $@"
-	@$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) -g $^ -o $@
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 	@$(LOG) "Compiling $(notdir $@)"

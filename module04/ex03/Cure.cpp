@@ -4,7 +4,10 @@ Cure::Cure() : AMateria("cure") {}
 
 Cure::Cure(const Cure &src) : AMateria(src) {}
 
-Cure &Cure::operator=(const Cure &rhs) { return *this; }
+Cure &Cure::operator=(const Cure &rhs) {
+  (void)rhs;
+  return *this;
+}
 
 Cure::~Cure() {}
 
