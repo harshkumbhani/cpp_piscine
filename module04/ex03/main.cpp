@@ -26,7 +26,7 @@ int main() {
 
   tmp = src->createMateria("ice");
   hero->equip(tmp);
-  
+
   tmp = src->createMateria("cure");
   hero->equip(tmp);
 

@@ -7,16 +7,16 @@ class MateriaSource : public IMateriaSource {
 private:
   static const int materiaSize = 4;
   int nbMaterias;
-  AMateria* aMateria[materiaSize];
+  AMateria *aMateria[materiaSize];
 
 public:
   MateriaSource();
-  MateriaSource(const MateriaSource& src);
-  MateriaSource& operator=(const MateriaSource& rhs);
+  MateriaSource(const MateriaSource &src);
+  MateriaSource &operator=(const MateriaSource &rhs);
   ~MateriaSource();
 
-  void  learnMateria(AMateria *);
-  AMateria* createMateria(std::string const &type);
+  void learnMateria(AMateria *);
+  AMateria *createMateria(std::string const &type);
 };
 
 #endif
