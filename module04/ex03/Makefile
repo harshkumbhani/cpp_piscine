@@ -2,7 +2,7 @@
 ###############                     CONFIG                        ##############
 ################################################################################
 
-NAME := interface 
+NAME := interface
 CC := c++ 
 CFLAGS = -Wextra -Wall -Werror -std=c++98 -MMD -MP $(addprefix -I, $(INC_DIRS))
 
