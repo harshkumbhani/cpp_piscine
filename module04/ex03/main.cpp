@@ -64,8 +64,8 @@ int main() {
   std::cout << "+---------------------------------------+\n";
   anotherHero->unequip(0); // Unequip ice
   tmp = src->createMateria("cure");
-  anotherHero->equip(tmp);       // Re-equip a new ice
-  anotherHero->use(0, *monster); // Should output using ice on Monster
+  anotherHero->equip(tmp);       // Equip cure at slot 0
+  anotherHero->use(0, *monster); // Should output using cure on Monster
   anotherHero->unequip(5);
 
   std::cout << "\n+---------------------------------------+\n";
