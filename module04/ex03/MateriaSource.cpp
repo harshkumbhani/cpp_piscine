@@ -44,13 +44,11 @@ void MateriaSource::learnMateria(AMateria *materia) {
   if (nbMaterias >= 4) {
     std::cout << "No more room to learn more Materias. All 4 slots filled."
               << std::endl;
-    delete materia;
     return;
   }
   std::cout << "Learning " << materia->getType() << " template." << std::endl;
   aMateria[nbMaterias] = materia->clone();
   ++nbMaterias;
-  delete materia;
 }
 
 AMateria *MateriaSource::createMateria(const std::string &type) {

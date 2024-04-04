@@ -101,9 +101,11 @@ void Character::unequip(int idx) {
     std::cout << "Error ! Trying to unequip empty slot." << std::endl;
     return;
   }
-
-  std::cout << this->_name << " unequips " << inventory[idx]->getType()
-            << std::endl;
+  if (_nbUnEquippedItems > 128) {
+    std::cout << "Garbage Storage full!! Cannot unequip more items!"
+              << std::endl;
+    return;
+  }
   unequippedItems[_nbUnEquippedItems] = inventory[idx];
   inventory[idx] = NULL;
   --_nbEquippedItems;
@@ -113,6 +115,9 @@ void Character::unequip(int idx) {
     inventory[i] = inventory[i + 1];
 
   inventory[_nbEquippedItems] = NULL;
+
+  std::cout << this->_name << " unequips " << inventory[idx]->getType()
+            << std::endl;
 }
 
 void Character::use(int idx, ICharacter &target) {

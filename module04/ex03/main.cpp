@@ -7,16 +7,18 @@
 
 int main() {
 
+  Ice ice;
+  Cure cure;
   std::cout << "\n+---------------------------------------+\n";
   std::cout << "|                Config                 |\n";
   std::cout << "+---------------------------------------+\n";
   IMateriaSource *src = new MateriaSource();
-  src->learnMateria(new Ice());
-  src->learnMateria(new Cure());
-  src->learnMateria(new Ice());
-  src->learnMateria(new Cure());
-  src->learnMateria(new Ice());
-  src->learnMateria(new Cure());
+  src->learnMateria(&ice);
+  src->learnMateria(&cure);
+  src->learnMateria(&ice);
+  src->learnMateria(&cure);
+  src->learnMateria(&ice);
+  src->learnMateria(&cure);
 
   std::cout << "\n+---------------------------------------+\n";
   std::cout << "|       Basic Equipment and Usage       |\n";
