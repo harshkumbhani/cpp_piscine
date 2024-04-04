@@ -4,8 +4,7 @@ Dog::Dog() : Animal("Dog"), _brain(new Brain()) {
   printLog("Dog constructor called.", MAGENTA);
 }
 
-Dog::Dog(const Dog &src) : Animal(src) {
-  _brain = new Brain(*(src._brain));
+Dog::Dog(const Dog &src) : Animal(src), _brain(new Brain(*(src._brain))) {
   printLog("Dog copy constructor called.", MAGENTA);
 }
 
