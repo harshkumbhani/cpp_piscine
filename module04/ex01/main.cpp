@@ -55,5 +55,5 @@ int main() {
   delete cat1;
   delete cat2;
 
-  return 1;
+  return 0;
 }

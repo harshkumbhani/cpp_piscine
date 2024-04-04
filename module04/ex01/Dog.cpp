@@ -32,6 +32,4 @@ void Dog::setIdea(int index, const std::string &idea) {
   _brain->setIdea(index, idea);
 }
 
-void  Dog::printIdeas(void) const {
-  _brain->printIdeas();
-}
+void Dog::printIdeas(void) const { _brain->printIdeas(); }

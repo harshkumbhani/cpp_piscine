@@ -4,8 +4,7 @@ Cat::Cat() : AAnimal("Cat"), _brain(new Brain()) {
   printLog("Cat constructor called.", MAGENTA);
 }
 
-Cat::Cat(const Cat &src) : AAnimal(src) {
-  _brain = new Brain(*(src._brain));
+Cat::Cat(const Cat &src) : AAnimal(src), _brain(new Brain(*(src._brain))) {
   printLog("Cat copy constructor called.", MAGENTA);
 }
 

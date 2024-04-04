@@ -6,5 +6,5 @@ int main() {
 
   AAnimal aAnimal;
 
-  return EXIT_FAILURE;
+  return 1;
 }
