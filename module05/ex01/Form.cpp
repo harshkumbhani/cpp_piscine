@@ -14,6 +14,17 @@ Form::Form(const std::string &name, const int signGrade, const int exGrade)
 
 Form::~Form() {}
 
+Form::Form(const Form &src)
+    : _name(src._name), isSigned(src.isSigned), gradeToSign(src.gradeToSign),
+      gradeToExecute(src.gradeToExecute) {}
+
+Form &Form::operator=(const Form &rhs) {
+  if (this != &rhs) {
+    isSigned = rhs.isSigned;
+  }
+  return *this;
+}
+
 const std::string &Form::getName() const { return _name; }
 
 bool Form::getIsSigned() const { return isSigned; }

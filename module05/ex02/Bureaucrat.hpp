@@ -4,9 +4,11 @@
 #include <exception>
 #include <iostream>
 
+class AForm;
+
 class Bureaucrat {
 private:
-  std::string const _name;
+  const std::string _name;
   int _grade;
 
 public:
@@ -14,7 +16,7 @@ public:
   Bureaucrat(int grade);
   Bureaucrat(const std::string &name, int grade);
   Bureaucrat(const Bureaucrat &src);
-  Bureaucrat & operator=(const Bureaucrat &rhs);
+  Bureaucrat &operator=(const Bureaucrat &rhs);
   ~Bureaucrat();
 
   // Getters
@@ -23,6 +25,9 @@ public:
 
   void increaseGrade(int gradeToIncrease);
   void decreaseGrade(int gradeToDecrease);
+
+  void signForm(AForm &form);
+  void executeForm(AForm const &form);
 };
 
 std::ostream &operator<<(std::ostream &output, Bureaucrat const &bureaucrat);

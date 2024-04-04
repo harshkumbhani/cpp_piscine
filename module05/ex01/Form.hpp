@@ -13,6 +13,8 @@ private:
 public:
   Form();
   Form(const std::string &name, const int signGrade, const int exGrade);
+  Form(const Form &src);
+  Form &operator=(const Form &rhs);
   ~Form();
 
   // Getters
