@@ -6,41 +6,76 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Utils.hpp"
 
+void  test_shrubbery_form() {
+
+  std::cout << color("\n========================================\n", BLUE);
+  std::cout << color("      SHRUBBERY CREATION TRAINING \n",
+                     YELLOW);
+  std::cout << color("========================================\n", BLUE);
+  Bureaucrat  Espresso_Patronum("Espresso_Patronum", 3);
+  Intern  Pixel_Waffle;
+  AForm *shrubbey = Pixel_Waffle.makeForm("Shrubbery Creation", "MARS");
+
+  Espresso_Patronum.signForm(*shrubbey);
+  Espresso_Patronum.executeForm(*shrubbey);
+  delete shrubbey;
+}
+
+void  test_robotomy_form() {
+  std::cout << color("\n========================================\n", BLUE);
+  std::cout << color("      ROBOTOMY REQUEST TRAINING\n",
+                     YELLOW);
+  std::cout << color("========================================\n", BLUE);
+  Bureaucrat  Cypher_Doc("Cypher_Doc", 3);
+  Intern  Palette_Turner;
+  AForm *robotomy = Palette_Turner.makeForm("Robotomy Request", "42 GPT");
+
+  Cypher_Doc.signForm(*robotomy);
+  Cypher_Doc.executeForm(*robotomy);
+  delete robotomy;
+}
+
+void  test_presidential_pardon_form() {
+  std::cout << color("\n========================================\n", BLUE);
+  std::cout << color("      PRESIDENTAIL PARDON  TRAINING\n",
+                     YELLOW);
+  std::cout << color("========================================\n", BLUE);
+  Bureaucrat  Cypher_Doc("Cypher_Doc", 3);
+  Intern  Palette_Turner;
+  AForm *pardon = Palette_Turner.makeForm("Presidential Pardon", "42 GPT");
+
+  Cypher_Doc.signForm(*pardon);
+  Cypher_Doc.executeForm(*pardon);
+  delete pardon;
+}
+
+void  test_non_existing_form() {
+  std::cout << color("\n========================================\n", BLUE);
+  std::cout << color("      NON EXISTING  TRAINING\n",
+                     YELLOW);
+  std::cout << color("========================================\n", BLUE);
+  Bureaucrat  Cypher_Doc("Cypher_Doc", 3);
+  Intern  Palette_Turner;
+  AForm *pardon = Palette_Turner.makeForm("Hi i don't Exist", "42 GPT");
+
+  Cypher_Doc.signForm(*pardon);
+  Cypher_Doc.executeForm(*pardon);
+  delete pardon;
+}
+
 int main() {
   std::cout << color("\n========================================\n", BLUE);
-  std::cout << color("Starting Form and Bureaucrat Interaction Tests\n",
+  std::cout << color("      Intern training starts\n",
                      YELLOW);
   std::cout << color("========================================\n", BLUE);
 
-  Bureaucrat highGradeBureaucrat("Alice", 1); // Highest possible grade
-  // Bureaucrat lowGradeBureaucrat("Bob", 150);  // Lowest possible grade
-
-  std::cout << color("\n---> Test 1: ShrubberyCreationForm\n", YELLOW);
-  // ShrubberyCreationForm shrubberyForm("HomeGarden");
-  Intern mk;
-
-  try {
-
-    AForm *shrubberyForm = mk.makeForm("ShrubberyCreatioForm", "Hospital");
-
-    highGradeBureaucrat.signForm(*shrubberyForm);
-    highGradeBureaucrat.executeForm(*shrubberyForm);
-  } catch (const std::exception &e) {
-    std::cerr << e.what() << std::endl;
-  }
-  // std::cout << color("\n---> Test 2: RobotomyRequestForm\n", YELLOW);
-  // RobotomyRequestForm robotomyForm("Employee");
-  // highGradeBureaucrat.signForm(robotomyForm);
-  // highGradeBureaucrat.executeForm(robotomyForm); // Note: Outcome is random
-  //
-  // std::cout << color("\n---> Test 3: PresidentialPardonForm\n", YELLOW);
-  // PresidentialPardonForm pardonForm("Criminal");
-  // highGradeBureaucrat.executeForm(pardonForm);
-  // highGradeBureaucrat.signForm(pardonForm);
-  // // lowGradeBureaucrat.executeForm(pardonForm);
+  test_shrubbery_form();
+  test_robotomy_form();
+  test_presidential_pardon_form();
+  // test_non_existing_form();
 
   std::cout << color("\n========================================\n", BLUE);
-  std::cout << color("Form and Bureaucrat Interaction Tests Completed\n",
+  std::cout << color("  Intern training Ends\n",
                      YELLOW);
   std::cout << color("========================================\n", BLUE);
   std::cout << std::endl;

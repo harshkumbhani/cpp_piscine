@@ -6,6 +6,16 @@
 
 class Form;
 
+class GradeTooHighException : public std::runtime_error {
+public:
+  GradeTooHighException(const std::string &msg);
+};
+
+class GradeTooLowException : public std::runtime_error {
+public:
+  GradeTooLowException(const std::string &msg);
+};
+
 class Bureaucrat {
 private:
   const std::string _name;

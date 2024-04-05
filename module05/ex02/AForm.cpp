@@ -1,5 +1,11 @@
 #include "AForm.hpp"
 
+AForm::FormAlreadySigned::FormAlreadySigned(const std::string &msg)
+    : std::runtime_error(msg) {}
+
+AForm::FormNotSigned::FormNotSigned(const std::string &msg)
+    : std::runtime_error(msg) {}
+
 AForm::AForm()
     : _name("undefined"), isSigned(false), gradeToSign(42), gradeToExecute(42),
       _target("Default") {}
@@ -9,9 +15,9 @@ AForm::AForm(const std::string &name, const int signGrade, const int exGrade,
     : _name(name), isSigned(false), gradeToSign(signGrade),
       gradeToExecute(exGrade), _target(target) {
   if (signGrade < 1 || exGrade < 1)
-    throw std::runtime_error("AForm::GradeTooHighException");
+    throw GradeTooHighException(_name + " Grade too high");
   if (signGrade > 150 || exGrade > 150)
-    throw std::runtime_error("AForm::GradeTooLowException");
+    throw GradeTooLowException(_name + " Grade too Low");
 }
 
 AForm::AForm(const AForm &src)
@@ -40,17 +46,18 @@ int AForm::getGradeToExecute() const { return gradeToExecute; }
 
 void AForm::beSigned(const Bureaucrat &bureaucrat) {
   if (this->gradeToSign < bureaucrat.getGrade())
-    throw std::runtime_error("Bureaucrat level too low to sign the Form");
-  if (this->isSigned == false)
-    this->isSigned = true;
+    throw GradeTooLowException("Bureaucrat level too low to sign the Form");
+  if (this->isSigned == true)
+    throw FormAlreadySigned("Form was already signed!");
+  this->isSigned = true;
 }
 
 void AForm::checkExecutionReq(const Bureaucrat &bureaucrat) const {
   if (this->isSigned == false)
-    throw std::runtime_error("Form has not been signed");
+    throw FormNotSigned("Form has not been signed");
 
   if (this->gradeToExecute < bureaucrat.getGrade())
-    throw std::runtime_error("Bureaucrat level too low to execute the Form");
+    throw GradeTooLowException("Bureaucrat level too low to execute the Form");
 }
 
 std::ostream &operator<<(std::ostream &output, const AForm &form) {

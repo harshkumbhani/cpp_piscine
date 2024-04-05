@@ -21,6 +21,16 @@ public:
   AForm &operator=(const AForm &rhs);
   virtual ~AForm();
 
+  class FormAlreadySigned : public std::runtime_error {
+  public:
+    FormAlreadySigned(const std::string &msg);
+  };
+
+  class FormNotSigned : public std::runtime_error {
+  public:
+    FormNotSigned(const std::string &msg);
+  };
+
   // Getters
   const std::string &getName() const;
   const std::string &getTarget() const;

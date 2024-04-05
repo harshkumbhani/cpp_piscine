@@ -1,5 +1,11 @@
 #include "Intern.hpp"
 
+Intern::FormNotFound::FormNotFound(const std::string &msg)
+    : std::runtime_error(msg) {}
+
+const std::string Intern::forms[_nbForms] = {
+    "Shrubbery Creation", "Robotomy Request", "Presidential Pardon"};
+
 Intern::Intern() {}
 
 Intern::Intern(const Intern &src) { (void)src; }
@@ -24,8 +30,6 @@ AForm *Intern::makePresidentialPardonForm(const std::string &target) {
 }
 
 AForm *Intern::makeForm(const std::string &name, const std::string &target) {
-  std::string forms[_nbForms] = {"ShrubberyCreationForm", "RobotomyRequestForm",
-                                 "PresidentialPardonForm"};
 
   AForm *(Intern::*formCreationArray[_nbForms])(const std::string &target) = {
       &Intern::makeShrubberyForm, &Intern::makeRobotomyForm,
@@ -33,9 +37,9 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target) {
 
   for (int i = 0; i < _nbForms; i++) {
     if (forms[i].compare(name) == 0) {
-      std::cout << "Intern creats " << forms[i] << std::endl;
+      std::cout << "Intern creates " << forms[i] << std::endl;
       return (this->*formCreationArray[i])(target);
     }
   }
-  throw std::runtime_error("You wanted a coffee ?");
+  throw FormNotFound("Form not found. It's probably out chasing unicorns!");
 }

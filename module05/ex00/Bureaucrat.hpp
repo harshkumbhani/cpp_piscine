@@ -4,6 +4,16 @@
 #include <exception>
 #include <iostream>
 
+class GradeTooHighException : public std::runtime_error {
+public:
+  GradeTooHighException(const std::string &msg);
+};
+
+class GradeTooLowException : public std::runtime_error {
+public:
+  GradeTooLowException(const std::string &msg);
+};
+
 class Bureaucrat {
 private:
   std::string const _name;

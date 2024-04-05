@@ -24,7 +24,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const {
   checkExecutionReq(executor);
 
-  std::cout << "\nZzzzzrrrrrrggggggghhhhh, zrrrrggghhhh, zrrrrggghhhhhhh!"
+  std::cout << "Zzzzzrrrrrrggggggghhhhh, zrrrrggghhhh, zrrrrggghhhhhhh!"
             << std::endl;
   srand(time(NULL));
   if (rand() % 2 == 0) {
