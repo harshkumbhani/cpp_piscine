@@ -21,7 +21,8 @@ void ScalarConverter::convertFromChar(char c) {
 
 void ScalarConverter::convertFromInt(long num) {
 
-  if (num < std::numeric_limits<char>::min() || num > std::numeric_limits<char>::max())
+  if (num < std::numeric_limits<char>::min() ||
+      num > std::numeric_limits<char>::max())
     std::cout << "char: overflow" << std::endl;
   else if (std::isprint(static_cast<char>(num)))
     std::cout << "char: '" << static_cast<char>(num) << "'\n";
@@ -29,7 +30,8 @@ void ScalarConverter::convertFromInt(long num) {
     std::cout << "char: "
               << "Non displayable" << std::endl;
 
-  if (num < std::numeric_limits<int>::min() || num > std::numeric_limits<int>::max())
+  if (num < std::numeric_limits<int>::min() ||
+      num > std::numeric_limits<int>::max())
     std::cout << "int: overflow" << std::endl;
   else
     std::cout << "int: " << num << "\n";
@@ -40,7 +42,8 @@ void ScalarConverter::convertFromInt(long num) {
 
 void ScalarConverter::convertFromFloat(double num) {
 
-  if (num < std::numeric_limits<char>::min() || num > std::numeric_limits<char>::max())
+  if (num < std::numeric_limits<char>::min() ||
+      num > std::numeric_limits<char>::max())
     std::cout << "char: overflow" << std::endl;
   else if (std::isprint(static_cast<char>(num)))
     std::cout << "char: '" << static_cast<char>(num) << "'\n";
@@ -48,7 +51,8 @@ void ScalarConverter::convertFromFloat(double num) {
     std::cout << "char: "
               << "Non displayable" << std::endl;
 
-  if (num < std::numeric_limits<int>::min() || num > std::numeric_limits<int>::max())
+  if (num < std::numeric_limits<int>::min() ||
+      num > std::numeric_limits<int>::max())
     std::cout << "int: overflow" << std::endl;
   else
     std::cout << "int: " << static_cast<int>(num) << "\n";
@@ -64,7 +68,8 @@ void ScalarConverter::convertFromFloat(double num) {
 
 void ScalarConverter::convertFromDouble(long double num) {
 
-  if (num < std::numeric_limits<char>::min() || num > std::numeric_limits<char>::max())
+  if (num < std::numeric_limits<char>::min() ||
+      num > std::numeric_limits<char>::max())
     std::cout << "char: overflow" << std::endl;
   else if (std::isprint(static_cast<char>(num)))
     std::cout << "char: '" << static_cast<char>(num) << "'\n";
@@ -72,7 +77,8 @@ void ScalarConverter::convertFromDouble(long double num) {
     std::cout << "char: "
               << "Non displayable" << std::endl;
 
-  if (num < std::numeric_limits<int>::min() || num > std::numeric_limits<int>::max())
+  if (num < std::numeric_limits<int>::min() ||
+      num > std::numeric_limits<int>::max())
     std::cout << "int: overflow" << std::endl;
   else
     std::cout << "int: " << static_cast<int>(num) << "\n";
