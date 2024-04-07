@@ -2,11 +2,19 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <sstream>
+
+enum Type { CHAR, INT, FLOAT, DOUBLE, PSEUDO_LITERAL, UNKNOWN };
+
+struct data {
+  char charValue;
+  int intValue;
+  float floatValue;
+  double doubleValue;
+};
 
 class ScalarConverter {
 private:
-  enum Type { CHAR, INT, FLOAT, DOUBLE, PSEUDO_LITERAL, UNKNOWN };
-
   ScalarConverter();
   ScalarConverter(const ScalarConverter &src);
   ScalarConverter &operator=(const ScalarConverter &rhs);
@@ -17,7 +25,7 @@ private:
   void convertFromFloat(float num);
   void convertFromDouble(float num);
   void printConvertedValues(Type type);
-  Type checkType(std::string &input);
+  Type checkType(std::string &input, data &d);
 
 public:
   static void convert(const std::string &input);
