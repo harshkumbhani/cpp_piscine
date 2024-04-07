@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 enum Type { CHAR, INT, FLOAT, DOUBLE, PSEUDO_LITERAL, UNKNOWN };
 

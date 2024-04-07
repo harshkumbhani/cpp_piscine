@@ -17,7 +17,8 @@ void ScalarConverter::convertFromChar(char c) {
   else
     std::cout << "char: Non-displayable character" << std::endl;
   std::cout << "int: " << static_cast<int>(c) << "\n"
-            << "float: " << static_cast<float>(c) << "\n"
+            << std::fixed << std::setprecision(1)
+            << "float: " << static_cast<float>(c) << "f\n"
             << "double: " << static_cast<double>(c) << std::endl;
 }
 
@@ -25,7 +26,8 @@ Type ScalarConverter::checkType(std::string &literal, data &d) {
   std::istringstream input(literal);
 
   if (literal.length() == 1 && std::isprint(literal[0])) {
-    input >> d.charValue;
+    d.charValue = literal[0];
+    // input >> d.charValue;
     return CHAR;
   }
   return UNKNOWN;
