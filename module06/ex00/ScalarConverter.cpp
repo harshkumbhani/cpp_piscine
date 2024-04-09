@@ -58,11 +58,7 @@ void ScalarConverter::convertFromFloat(double num) {
     std::cout << "int: " << static_cast<int>(num) << "\n";
   std::cout << std::fixed;
 
-  if (num < std::numeric_limits<float>::min() ||
-      num > std::numeric_limits<float>::max())
-    std::cout << "float: overflow" << std::endl;
-  else
-    std::cout << "float: " << num << "f\n";
+  std::cout << "float: " << num << "f\n";
   std::cout << "double: " << static_cast<double>(num) << std::endl;
 }
 
@@ -84,16 +80,8 @@ void ScalarConverter::convertFromDouble(long double num) {
     std::cout << "int: " << static_cast<int>(num) << "\n";
   std::cout << std::fixed;
 
-  if (num < std::numeric_limits<float>::min() ||
-      num > std::numeric_limits<float>::max())
-    std::cout << "float: overflow" << std::endl;
-  else
-    std::cout << "float: " << static_cast<float>(num) << "f\n";
-  if (num < std::numeric_limits<double>::min() ||
-      num > std::numeric_limits<double>::max())
-    std::cout << "double: overflow" << std::endl;
-  else
-    std::cout << "double: " << num << "f\n";
+  std::cout << "float: " << static_cast<float>(num) << "f\n";
+  std::cout << "double: " << num << "f\n";
 }
 
 void ScalarConverter::convertPseudoLiteral(std::string &literal, bool isFloat) {
@@ -138,7 +126,7 @@ Type ScalarConverter::checkType(std::string &literal, data &d) {
 
   if (literal.length() == 1 && std::isprint(literal[0]) &&
       std::isdigit(literal[0]) == false) {
-    input >> d.charValue;
+     d.charValue = literal[0];
     return CHAR;
   }
 
