@@ -7,7 +7,7 @@ int main() {
   Base *p = generate();
   identify(p);
   delete p;
-  
+
   std::cout << "Identifying using References" << std::endl;
   Base *q = generate();
   identify(*q);
