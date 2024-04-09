@@ -1,7 +1,6 @@
 #include "Functions.hpp"
 #include "Classes.hpp"
 
-badCast::badCast(const std::string &msg) : std::runtime_error(msg){};
 
 Base *generate(void) {
   int classIdentity;
@@ -29,11 +28,11 @@ Base *generate(void) {
 }
 
 void identify(Base *p) {
-  if (dynamic_cast<A *>(p) != 0)
+  if (dynamic_cast<A *>(p) != NULL)
     std::cout << "Class: A\n" << std::endl;
-  else if (dynamic_cast<B *>(p) != 0)
+  else if (dynamic_cast<B *>(p) != NULL)
     std::cout << "Class: B\n" << std::endl;
-  else if (dynamic_cast<C *>(p) != 0)
+  else if (dynamic_cast<C *>(p) != NULL)
     std::cout << "Class: C\n" << std::endl;
   else
     std::cout << "Conversion not possible\n" << std::endl;
@@ -45,19 +44,18 @@ void identify(Base &p) {
     A &a = dynamic_cast<A &>(p);
     (void)a;
     std::cout << "Class: A\n" << std::endl;
-  } catch (std::bad_cast &) {
-    try {
-      B &b = dynamic_cast<B &>(p);
-      (void)b;
-      std::cout << "Class: B\n" << std::endl;
-    } catch (std::bad_cast &) {
-      try {
-        C &c = dynamic_cast<C &>(p);
-        (void)c;
-        std::cout << "Class: C\n" << std::endl;
-      } catch (std::bad_cast &) {
-        throw badCast("std:: bad cast");
-      }
-    }
+  } catch (std::exception &) {
+  }
+  try {
+    B &b = dynamic_cast<B &>(p);
+    (void)b;
+    std::cout << "Class: B\n" << std::endl;
+  } catch (std::exception &) {
+  }
+  try {
+    C &c = dynamic_cast<C &>(p);
+    (void)c;
+    std::cout << "Class: C\n" << std::endl;
+  } catch (std::exception &) {
   }
 }

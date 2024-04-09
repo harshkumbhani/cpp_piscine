@@ -3,11 +3,19 @@
 
 int main () {
 
-  // Base *test = generate();
-  // identify(NULL);
-
+  std::cout << "Identifying using pointers" << std::endl;
   Base *p = generate();
 
-  identify(*p);
+  identify(p);
+
+  std::cout << "Identifying using References" << std::endl;
+
+  delete p;
+
+  Base *q = generate();
+  identify(*q);
+
+  delete q;
   return 0;
 }
+

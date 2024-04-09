@@ -3,10 +3,6 @@
 
 #include "Base.hpp"
 
-class badCast : public std::runtime_error {
-public:
-  badCast(const std::string &msg);
-};
 
 Base *generate(void);
 
