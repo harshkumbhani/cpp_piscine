@@ -6,7 +6,6 @@ Base *generate(void) {
   int classIdentity;
   Base *returnClass;
 
-  srand(time(NULL));
   classIdentity = rand() % 3;
 
   switch (classIdentity) {
