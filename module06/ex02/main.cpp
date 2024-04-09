@@ -3,7 +3,6 @@
 
 int main() {
 
-  srand(time(NULL));
   std::cout << "Identifying using pointers" << std::endl;
   Base *p = generate();
   identify(p);

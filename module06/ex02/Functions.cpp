@@ -1,10 +1,12 @@
 #include "Functions.hpp"
 #include "Classes.hpp"
 
-
 Base *generate(void) {
   int classIdentity;
   Base *returnClass;
+  static int counter = 0;
+
+  srand(time(NULL) + ++counter);
 
   classIdentity = rand() % 3;
 
