@@ -27,3 +27,7 @@ void Span::print() const {
   for (size_t i = 0; i < span.size(); i++)
     std::cout << "index #" << i + 1 << " :  " << span[i] << std::endl;
 }
+
+size_t Span::shortestSpan() const {
+  
+}

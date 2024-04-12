@@ -18,6 +18,8 @@ public:
 
   void addNumber(const int &num);
   void print() const;
+  size_t shortestSpan() const;
+
   class SpanNotFound : public std::exception {
   public:
     virtual const char *what() const throw() {
