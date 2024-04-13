@@ -14,6 +14,7 @@ private:
   std::string _target;
 
 public:
+
   AForm();
   AForm(const std::string &name, const int signGrade, const int exGrade,
         const std::string &target);

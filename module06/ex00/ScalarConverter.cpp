@@ -138,7 +138,7 @@ Type ScalarConverter::checkType(std::string &literal, data &d) {
   }
 
   input.clear();
-  std::string::reverse_iterator itr = literal.rbegin();
+   std::string::reverse_iterator itr = literal.rbegin();
   if (*itr == 'f' || *itr == 'F')
     literal = literal.substr(0, literal.length() - 1);
   input.str(literal);
