@@ -28,6 +28,29 @@ void Span::print() const {
     std::cout << "index #" << i + 1 << " :  " << span[i] << std::endl;
 }
 
-size_t Span::shortestSpan() const {
-  
+size_t Span::shortestSpan() {
+  if (span.size() < 2)
+    throw SpanNotFound();
+
+  size_t result = std::numeric_limits<size_t>::max();
+  std::sort(span.begin(), span.end());
+  std::vector<int>::iterator it;
+  for (it = span.begin(); it + 1 != span.end(); it++) {
+    size_t diff = static_cast<size_t>(std::abs(*(it + 1) - *it));
+    result = std::min(result, diff);
+  }
+  return result;
 }
+
+size_t Span::longestSpan() const {
+  if (span.size() < 2)
+    throw SpanNotFound();
+
+  std::vector<int>::const_iterator min =
+      std::min_element(span.begin(), span.end());
+  std::vector<int>::const_iterator max =
+      std::max_element(span.begin(), span.end());
+
+  return std::abs(*max - *min);
+}
+

@@ -16,9 +16,19 @@ public:
   Span &operator=(const Span &rhs);
   ~Span();
 
+  template <typename Iterator> void floodVector(Iterator begin, Iterator end) {
+    size_t distance = std::distance(span.begin(), span.end());
+    if (distance + span.size() > _max_size)
+      throw NoMoreSpaceInSpan();
+    span.insert(span.end(), begin, end);
+  }
+
+  std::vector<int> getSpan() const;
+
   void addNumber(const int &num);
   void print() const;
-  size_t shortestSpan() const;
+  size_t shortestSpan();
+  size_t longestSpan() const;
 
   class SpanNotFound : public std::exception {
   public:
