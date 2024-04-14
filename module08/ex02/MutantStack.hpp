@@ -1,11 +1,11 @@
 #ifndef MUTANTSTACK_HPP
 #define MUTANTSTACK_HPP
 
+#include <deque>
 #include <iostream>
 #include <stack>
-#include <deque>
 
-template <typename T, typename Container = std::deque<T> >
+template <typename T, typename Container = std::deque<T>>
 class MutantStack : public std::stack<T, Container> {
 public:
   MutantStack() : std::stack<T, Container>() {}
@@ -28,6 +28,5 @@ public:
   reverse_iterator rbegin() { return this->c.rbegin(); }
   reverse_iterator rend() { return this->c.rend(); }
 };
-
 
 #endif

@@ -39,8 +39,8 @@ void testIteration(const std::vector<T> &elements, bool reverse = false) {
   std::cout << "MSTACK Size: " << mstack.size() << std::endl;
 }
 
-void  test_copy_constructor() {
- MutantStack<int> mstack;
+void test_copy_constructor() {
+  MutantStack<int> mstack;
 
   mstack.push(5);
   mstack.push(7);
@@ -51,10 +51,10 @@ void  test_copy_constructor() {
   print_test_name("Copy constructor test");
   MutantStack<int> copyStack(mstack);
   std::cout << "Printing all stack elements....\n";
-    for (MutantStack<int>::iterator it = copyStack.begin();
-         it != copyStack.end(); ++it) {
-      std::cout << *it << std::endl;
-    }
+  for (MutantStack<int>::iterator it = copyStack.begin(); it != copyStack.end();
+       ++it) {
+    std::cout << *it << std::endl;
+  }
   std::cout << "\nMstack Top: " << copyStack.top() << std::endl;
   std::cout << "Mstack size: " << copyStack.size() << std::endl;
 
@@ -62,14 +62,13 @@ void  test_copy_constructor() {
   copyStack.pop();
   std::cout << "\nMstack Top: " << copyStack.top() << std::endl;
   std::cout << "Mstack size: " << copyStack.size() << std::endl;
-  
 }
 
 int main() {
 
   int numsVector[] = {5, 7, 10, -42, 35};
-  std::vector<int> v(numsVector, numsVector + sizeof(numsVector) /
-                                                        sizeof(numsVector[0]));
+  std::vector<int> v(numsVector,
+                     numsVector + sizeof(numsVector) / sizeof(numsVector[0]));
 
   testIteration(v);
   testIteration(v, true);
