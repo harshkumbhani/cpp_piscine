@@ -9,7 +9,7 @@ public:
   OutOfBounds(const std::string &msg);
 };
 
-template <class T> class Array {
+template <typename T> class Array {
 public:
   Array();
   Array(unsigned int n);
