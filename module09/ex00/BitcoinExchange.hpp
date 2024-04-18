@@ -40,8 +40,9 @@ public:
 
   BitcoinExchange &operator=(const BitcoinExchange &rhs);
 
-  void parseDataBase(data &data, const std::string &inputFileName);
-  static void btcProgram(const std::string &inputFileName);
+  void  parseDataBase(data &data);
+  void  parseInputFile(data &data, const std::string &inputFile);
+  static void btcProgram(const std::string &inputFile);
 };
 
 #endif
