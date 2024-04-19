@@ -81,14 +81,14 @@ void BitcoinExchange::btcProgram(const std::string &inputFile) {
   if (file.fail() == true)
     throw std::runtime_error("Couldn't open the " + inputFile);
 
-  ++d.lineNumber = 1;
+  // d.lineNumber = 1;
   while (std::getline(file, d.line)) {
     if (d.line.empty() == true)
       continue;
 
+    ++d.lineNumber;
     if (d.line == "date | value" && d.lineNumber == 1)
       continue;
-    ++d.lineNumber;
     if (d.line.find('|') == std::string::npos) {
       std::cerr << "Error: bad format, correct Format \" date | value \" "
                 << std::endl;
