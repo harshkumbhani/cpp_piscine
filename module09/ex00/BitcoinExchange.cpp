@@ -81,8 +81,14 @@ void BitcoinExchange::btcProgram(const std::string &inputFile) {
   if (file.fail() == true)
     throw std::runtime_error("Couldn't open the " + inputFile);
 
-  std::getline(file, d.line);
+  ++d.lineNumber = 1;
   while (std::getline(file, d.line)) {
+    if (d.line.empty() == true)
+      continue;
+
+    if (d.line == "date | value" && d.lineNumber == 1)
+      continue;
+    ++d.lineNumber;
     if (d.line.find('|') == std::string::npos) {
       std::cerr << "Error: bad format, correct Format \" date | value \" "
                 << std::endl;
@@ -92,7 +98,10 @@ void BitcoinExchange::btcProgram(const std::string &inputFile) {
 
     std::getline(ss, d.date, '|');
     ss >> d.value;
-
+    if (ss.eof() == false) {
+      std::cout << "Error: bad input => \"" << d.line << "\"" << std::endl;
+      continue;
+    }
     if (dateValidator(d.date) == false) {
       std::cout << "Error: bad input => " << d.date << std::endl;
       continue;
@@ -110,8 +119,8 @@ void BitcoinExchange::btcProgram(const std::string &inputFile) {
 
     std::map<std::string, double>::iterator it = d.dataBase.lower_bound(d.date);
     if (it == d.dataBase.begin()) {
-      std::cout << "Error: Data starts from 2009-01-02 Requested: " << d.date
-                << std::endl;
+      std::cout << "Error: Data starts from " << d.dataBase.begin()->first
+                << " Requested: " << d.date << std::endl;
       continue;
     }
     if (d.date < it->first || it == d.dataBase.end())

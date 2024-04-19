@@ -28,7 +28,6 @@ struct data {
   std::string date;
   std::string line;
   std::map<std::string, double> dataBase;
-  std::map<std::string, double> inputData;
 };
 
 class BitcoinExchange {
@@ -40,8 +39,8 @@ public:
 
   BitcoinExchange &operator=(const BitcoinExchange &rhs);
 
-  void  parseDataBase(data &data);
-  void  parseInputFile(data &data, const std::string &inputFile);
+  void parseDataBase(data &data);
+  void parseInputFile(data &data, const std::string &inputFile);
   static void btcProgram(const std::string &inputFile);
 };
 
