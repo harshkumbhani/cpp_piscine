@@ -81,7 +81,6 @@ void BitcoinExchange::btcProgram(const std::string &inputFile) {
   if (file.fail() == true)
     throw std::runtime_error("Couldn't open the " + inputFile);
 
-  // d.lineNumber = 1;
   while (std::getline(file, d.line)) {
     if (d.line.empty() == true)
       continue;
