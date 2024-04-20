@@ -1,11 +1,11 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include <stdlib.h>
 #include <iostream>
 #include <list>
 #include <sstream>
 #include <stack>
+#include <stdlib.h>
 
 const std::string RESET = "\033[0m";
 const std::string RED = "\033[31m";
