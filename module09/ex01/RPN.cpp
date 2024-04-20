@@ -68,7 +68,7 @@ void RPN::calculate(const std::string &input) {
     if (token.empty() == true)
       continue;
     if (token.size() > 1)
-      throw RPN::StringNotInStandardFormat();
+      throw RPN::FoundCharOfNotSize1();
     operations op = checkOperator(token[0]);
 
     if (op != NOT_AN_OPERATOR) {
