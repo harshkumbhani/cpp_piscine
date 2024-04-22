@@ -78,9 +78,11 @@ void PmergeMe::sortUsingVector(int argc, char *argv[]) {
     append.push_back((*it)[1]);
   }
   doBinaryInsertion(main, append);
-  std::cout << "Main chain: " << std::endl;
-  for (vit it = main.begin(); it != main.end(); it++)
-    std::cout << *it << std::endl; // for debugging purpose
+  std::cout << "Unsorted:                               Sorted:" << std::endl;
+  for (size_t i = 0; i < main.size(); i++)
+    std::cout << input[i] << "                   " << main[i] << std::endl;
+  // for (vit it = main.begin(); it != main.end(); it++)
+  //   std::cout << *it << std::endl; // for debugging purpose
 }
 
 void PmergeMe::sortMe(int argc, char **argv) { sortUsingVector(argc, argv); }
