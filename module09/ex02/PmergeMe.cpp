@@ -38,11 +38,11 @@ void PmergeMe::sortUsingVector(int argc, char *argv[]) {
 
   parseInput<std::vector<int> >(argc, argv, input);
   if (PmergeMe::isSorted(input) == true) {
-    main.swap(input);
+    main = input;
     return;
   }
   if (input.size() == 1) {
-    main.swap(input);
+    main = input;
     return;
   }
   if (input.size() == 2) {
@@ -81,11 +81,11 @@ void PmergeMe::sortUsingDeque(int argc, char *argv[]) {
 
   parseInput<std::deque<int> >(argc, argv, dinput);
   if (PmergeMe::isSorted<std::deque<int> >(dinput) == true) {
-    deque_main.swap(dinput);
+    deque_main = dinput;
     return;
   }
   if (dinput.size() == 1) {
-    deque_main.swap(dinput);
+    deque_main = dinput;
     return;
   }
   if (dinput.size() == 2) {
