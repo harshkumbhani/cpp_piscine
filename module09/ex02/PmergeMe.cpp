@@ -32,6 +32,22 @@ bool PmergeMe::comparePairs(const std::vector<int> &a,
   return false;
 }
 
+std::vector<int> PmergeMe::generateJacobsthalNumbers(const int size) {
+  std::vector<int> jsn;
+
+  if (size > 0)
+    jsn.push_back(0);
+  if (size > 1)
+    jsn.push_back(1);
+  for(int i = 2; i < size; i++) {
+    int level = jsn[i - 1] + 2 * jsn[i - 2];
+    jsn.push_back(level);
+    if (size < jsn[i])
+      break;
+  }
+  return jsn;
+}
+
 void PmergeMe::doBinaryInsertion(std::vector<int> &main,
                                  std::vector<int> &append) {
   vit main_it;
@@ -55,6 +71,8 @@ void PmergeMe::doBinaryInsertion(std::vector<int> &main,
 
 void PmergeMe::sortUsingVector(int argc, char *argv[]) {
   std::vector<int> input;
+  std::vector<int> jsn;
+
   parseInput<std::vector<int> >(argc, argv, input);
   for (vit it = input.begin(); it != input.end(); it += 2) {
     if (it + 1 == input.end()) {
@@ -77,8 +95,12 @@ void PmergeMe::sortUsingVector(int argc, char *argv[]) {
     main.push_back((*it)[0]);
     append.push_back((*it)[1]);
   }
+  jsn = PmergeMe::generateJacobsthalNumbers(append.size());
+  std::cout << "Prinitng JSN.......\n\n";
+  for (vit it = jsn.begin(); it != jsn.end(); it++)
+    std::cout << *it << std::endl;
   doBinaryInsertion(main, append);
-  std::cout << "Unsorted:                               Sorted:" << std::endl;
+  std::cout << "Unsorted:           Sorted:" << std::endl;
   for (size_t i = 0; i < main.size(); i++)
     std::cout << input[i] << "                   " << main[i] << std::endl;
   // for (vit it = main.begin(); it != main.end(); it++)
