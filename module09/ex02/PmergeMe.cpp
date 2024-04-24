@@ -46,7 +46,7 @@ void PmergeMe::sortUsingVector(int argc, char *argv[]) {
     return;
   }
   if (input.size() == 2) {
-    main.swap(input);
+    main = input;
     if (main[0] > main[1])
       std::swap(main[0], main[1]);
     return;
@@ -89,7 +89,7 @@ void PmergeMe::sortUsingDeque(int argc, char *argv[]) {
     return;
   }
   if (dinput.size() == 2) {
-    deque_main.swap(dinput);
+    deque_main = dinput;
     if (deque_main[0] > deque_main[1])
       std::swap(deque_main[0], deque_main[1]);
     return;

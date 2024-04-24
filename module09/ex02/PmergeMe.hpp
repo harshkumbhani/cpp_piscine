@@ -80,6 +80,9 @@ public:
     int val = 0;
     for (int i = 1; i < ac; i++) {
       std::string arg(av[i]);
+      if (arg.empty() == true ||
+        arg.find_first_not_of(" \t\r") == std::string::npos)
+        throw PmergeMe::InvalidInput();
       std::stringstream ss(arg);
 
       ss >> val;
