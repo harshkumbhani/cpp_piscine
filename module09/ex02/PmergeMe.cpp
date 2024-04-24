@@ -15,15 +15,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs) {
   return *this;
 }
 
-void PmergeMe::printPairs() const {
-  for (size_t i = 0; i < pairs.size(); ++i) {
-    for (size_t j = 0; j < pairs[i].size(); ++j) {
-      std::cout << pairs[i][j] << " ";
-    }
-    std::cout << std::endl;
-  }
-}
-
 bool PmergeMe::comparePairs(const std::vector<int> &a,
                             const std::vector<int> &b) {
   if (a.size() > 1 && b.size() > 1) {
@@ -32,49 +23,34 @@ bool PmergeMe::comparePairs(const std::vector<int> &a,
   return false;
 }
 
-std::vector<int> PmergeMe::generateJacobsthalNumbers(const int size) {
-  std::vector<int> jsn;
+double PmergeMe::measureComputationTime(void (PmergeMe::*sortFunction)(int,
+                                                                       char **),
+                                        int argc, char **argv) {
+  clock_t startTime = clock();
+  (this->*sortFunction)(argc, argv);
+  clock_t endTime = clock();
 
-  if (size > 0)
-    jsn.push_back(0);
-  if (size > 1)
-    jsn.push_back(1);
-  for (int i = 2; i < size; i++) {
-    int level = jsn[i - 1] + 2 * jsn[i - 2];
-    jsn.push_back(level);
-    if (size < jsn[i])
-      break;
-  }
-  return jsn;
-}
-
-
-void PmergeMe::doBinaryInsertion(std::vector<int> &main,
-                                 std::vector<int> &append,
-                                 std::vector<int> &jsn) {
-  main.insert(main.begin(), append[0]);
-  if (append.size() > 1 && jsn.size() > 1) {
-    vit it = std::lower_bound(main.begin(), main.end(), append[1]);
-    main.insert(it, append[1]);
-  }
-  for (size_t i = 2; i < jsn.size(); i++) {
-    size_t j = jsn[i - 1];
-    size_t k = jsn[i];
-    if (k > append.size() - 1)
-      k = append.size() - 1;
-    while (k > j) {
-      vit it = std::lower_bound(main.begin(), main.end(), append[k]);
-      main.insert(it, append[k]);
-      --k;
-    }
-  }
+  return (endTime - startTime) * 1000.0 / CLOCKS_PER_SEC;
 }
 
 void PmergeMe::sortUsingVector(int argc, char *argv[]) {
-  std::vector<int> input;
   std::vector<int> jsn;
 
   parseInput<std::vector<int> >(argc, argv, input);
+  if (PmergeMe::isSorted(input) == true) {
+    main.swap(input);
+    return;
+  }
+  if (input.size() == 1) {
+    main.swap(input);
+    return;
+  }
+  if (input.size() == 2) {
+    main.swap(input);
+    if (main[0] > main[1])
+      std::swap(main[0], main[1]);
+    return;
+  }
   for (vit it = input.begin(); it != input.end(); it += 2) {
     if (it + 1 == input.end()) {
       std::vector<int> single;
@@ -96,11 +72,71 @@ void PmergeMe::sortUsingVector(int argc, char *argv[]) {
     main.push_back((*it)[0]);
     append.push_back((*it)[1]);
   }
-  jsn = PmergeMe::generateJacobsthalNumbers(append.size());
-  doBinaryInsertion(main, append, jsn);
-  std::cout << "Unsorted:           Sorted:" << std::endl;
-  for (size_t i = 0; i < main.size(); i++)
-    std::cout << input[i] << "                   " << main[i] << std::endl;
+  jsn = PmergeMe::generateJacobsthalNumbers<std::vector<int> >(append.size());
+  PmergeMe::doBinaryInsertion<std::vector<int> >(main, append, jsn);
 }
 
-void PmergeMe::sortMe(int argc, char **argv) { sortUsingVector(argc, argv); }
+void PmergeMe::sortUsingDeque(int argc, char *argv[]) {
+  std::deque<int> jsn;
+
+  parseInput<std::deque<int> >(argc, argv, dinput);
+  if (PmergeMe::isSorted<std::deque<int> >(dinput) == true) {
+    deque_main.swap(dinput);
+    return;
+  }
+  if (dinput.size() == 1) {
+    deque_main.swap(dinput);
+    return;
+  }
+  if (dinput.size() == 2) {
+    deque_main.swap(dinput);
+    if (deque_main[0] > deque_main[1])
+      std::swap(deque_main[0], deque_main[1]);
+    return;
+  }
+  for (dit it = dinput.begin(); it != dinput.end(); it += 2) {
+    if (it + 1 == dinput.end()) {
+      std::vector<int> single;
+      single.push_back(dinput[dinput.size() - 1]);
+      deque_pairs.push_back(single);
+      break;
+    }
+    std::vector<int> couple;
+    couple.push_back(std::max(*it, *(it + 1)));
+    couple.push_back(std::min(*it, *(it + 1)));
+    deque_pairs.push_back(couple);
+  }
+  std::sort(deque_pairs.begin(), deque_pairs.end(), PmergeMe::comparePairs);
+  for (udditer it = deque_pairs.begin(); it != deque_pairs.end(); it++) {
+    if (it->size() == 1) {
+      deque_append.push_back((*it)[0]);
+      break;
+    }
+    deque_main.push_back((*it)[0]);
+    deque_append.push_back((*it)[1]);
+  }
+  jsn =
+      PmergeMe::generateJacobsthalNumbers<std::deque<int> >(deque_append.size());
+  PmergeMe::doBinaryInsertion<std::deque<int> >(deque_main, deque_append, jsn);
+}
+
+void PmergeMe::sortMe(int argc, char **argv) {
+  double vectorTime;
+  double dequeTime;
+
+  dequeTime = measureComputationTime(&PmergeMe::sortUsingDeque, argc, argv);
+  vectorTime = measureComputationTime(&PmergeMe::sortUsingVector, argc, argv);
+  std::cout << "Before: ";
+  for (vit it = input.begin(); it != input.end(); it++)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+  std::cout << "After: ";
+  for (dit it = deque_main.begin(); it != deque_main.end(); it++)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+  std::cout << "Time to process a range of " << argc - 1
+            << " elements with std::vector : " << vectorTime << "ms"
+            << std::endl;
+  std::cout << "Time to process a range of " << argc - 1
+            << " elements with std::deque : " << dequeTime << "ms" << std::endl;
+}
