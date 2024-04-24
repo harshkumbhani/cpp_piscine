@@ -39,7 +39,7 @@ std::vector<int> PmergeMe::generateJacobsthalNumbers(const int size) {
     jsn.push_back(0);
   if (size > 1)
     jsn.push_back(1);
-  for(int i = 2; i < size; i++) {
+  for (int i = 2; i < size; i++) {
     int level = jsn[i - 1] + 2 * jsn[i - 2];
     jsn.push_back(level);
     if (size < jsn[i])
@@ -48,24 +48,25 @@ std::vector<int> PmergeMe::generateJacobsthalNumbers(const int size) {
   return jsn;
 }
 
-void PmergeMe::doBinaryInsertion(std::vector<int> &main,
-                                 std::vector<int> &append) {
-  vit main_it;
-  vit append_it;
 
+void PmergeMe::doBinaryInsertion(std::vector<int> &main,
+                                 std::vector<int> &append,
+                                 std::vector<int> &jsn) {
   main.insert(main.begin(), append[0]);
-  for (append_it = ++append.begin(); append_it != append.end(); append_it++) {
-    int startPos = 0;
-    int endPos = main.size() - 1;
-    int midPoint = 0;
-    while (startPos <= endPos) {
-      midPoint = (startPos + endPos) / 2;
-      if (*append_it < main[midPoint])
-        endPos = midPoint - 1;
-      else
-        startPos = midPoint + 1;
+  if (append.size() > 1 && jsn.size() > 1) {
+    vit it = std::lower_bound(main.begin(), main.end(), append[1]);
+    main.insert(it, append[1]);
+  }
+  for (size_t i = 2; i < jsn.size(); i++) {
+    size_t j = jsn[i - 1];
+    size_t k = jsn[i];
+    if (k > append.size() - 1)
+      k = append.size() - 1;
+    while (k > j) {
+      vit it = std::lower_bound(main.begin(), main.end(), append[k]);
+      main.insert(it, append[k]);
+      --k;
     }
-    main.insert(main.begin() + startPos, *append_it);
   }
 }
 
@@ -96,15 +97,10 @@ void PmergeMe::sortUsingVector(int argc, char *argv[]) {
     append.push_back((*it)[1]);
   }
   jsn = PmergeMe::generateJacobsthalNumbers(append.size());
-  std::cout << "Prinitng JSN.......\n\n";
-  for (vit it = jsn.begin(); it != jsn.end(); it++)
-    std::cout << *it << std::endl;
-  doBinaryInsertion(main, append);
+  doBinaryInsertion(main, append, jsn);
   std::cout << "Unsorted:           Sorted:" << std::endl;
   for (size_t i = 0; i < main.size(); i++)
     std::cout << input[i] << "                   " << main[i] << std::endl;
-  // for (vit it = main.begin(); it != main.end(); it++)
-  //   std::cout << *it << std::endl; // for debugging purpose
 }
 
 void PmergeMe::sortMe(int argc, char **argv) { sortUsingVector(argc, argv); }

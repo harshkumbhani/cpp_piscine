@@ -38,9 +38,11 @@ public:
   void sortMe(int argc, char **argv);
   void sortUsingVector(int argc, char **argv);
   void printPairs() const;
-  void doBinaryInsertion(std::vector<int> &main, std::vector<int> &append);
-  std::vector<int>  generateJacobsthalNumbers(const int size);
-  static bool comparePairs(const std::vector<int> &a, const std::vector<int> &b);
+  void doBinaryInsertion(std::vector<int> &main, std::vector<int> &append,
+                         std::vector<int> &jsn);
+  std::vector<int> generateJacobsthalNumbers(const int size);
+  static bool comparePairs(const std::vector<int> &a,
+                           const std::vector<int> &b);
 
   class InvalidInput : public std::exception {
   public:
