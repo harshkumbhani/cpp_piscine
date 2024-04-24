@@ -122,7 +122,7 @@ void BitcoinExchange::btcProgram(const std::string &inputFile) {
                 << " Requested: " << d.date << std::endl;
       continue;
     }
-    if (d.date < it->first || it == d.dataBase.end())
+    if (it == d.dataBase.end() || d.date < it->first)
       --it;
     std::cout << d.date << " => " << d.value << " = " << d.value * it->second
               << std::endl;
