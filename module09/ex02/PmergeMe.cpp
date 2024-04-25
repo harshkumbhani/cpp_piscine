@@ -115,10 +115,6 @@ void PmergeMe::sortMe(int argc, char **argv) {
     std::cout << *it << " ";
   std::cout << std::endl;
   std::cout << "After: ";
-  std::cout << "\nVector: ";
-  for (vit it = main.begin(); it != main.end(); it++)
-    std::cout << *it << " ";
-  std::cout << "\ndeque: ";
   for (dit it = deque_main.begin(); it != deque_main.end(); it++)
     std::cout << *it << " ";
   std::cout << std::endl;
