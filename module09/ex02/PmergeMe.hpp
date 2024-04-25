@@ -94,6 +94,22 @@ public:
   }
 
   template <typename Container>
+  void mergeInsertionSort(Container &pairs) {
+    if (pairs.size() <= 1)
+      return;
+
+    size_t mid = pairs.size() / 2;
+
+    Container left(pairs.begin(), pairs.begin() + mid);
+    Container right(pairs.begin() + mid, pairs.end());
+
+    mergeInsertionSort(left);
+    mergeInsertionSort(right);
+    std::merge(left.begin(), left.end(), right.begin(),
+               right.end(), pairs.begin());
+  }
+
+  template <typename Container>
   void doBinaryInsertion(Container &main, Container &append, Container &jsn) {
     typedef typename Container::iterator bit;
     main.insert(main.begin(), append[0]);
