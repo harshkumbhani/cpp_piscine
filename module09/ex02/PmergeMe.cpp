@@ -15,14 +15,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs) {
   return *this;
 }
 
-bool PmergeMe::comparePairs(const std::vector<int> &a,
-                            const std::vector<int> &b) {
-  if (a.size() > 1 && b.size() > 1) {
-    return a[0] < b[0];
-  }
-  return false;
-}
-
 double PmergeMe::measureComputationTime(void (PmergeMe::*sortFunction)(int,
                                                                        char **),
                                         int argc, char **argv) {

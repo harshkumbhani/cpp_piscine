@@ -43,8 +43,6 @@ public:
   void sortMe(int argc, char **argv);
   void sortUsingVector(int argc, char **argv);
   void sortUsingDeque(int argc, char **argv);
-  static bool comparePairs(const std::vector<int> &a,
-                           const std::vector<int> &b);
   double measureComputationTime(void (PmergeMe::*sortFunction)(int, char **),
                                 int argc, char **argv);
 
