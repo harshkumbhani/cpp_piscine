@@ -1,17 +1,26 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() : pairs(), main(), append() {}
+PmergeMe::PmergeMe() : 
+  deque_pairs(), deque_main(), deque_append(), dinput(),
+  pairs(), main(), append(), input() {}
 
-PmergeMe::PmergeMe(const PmergeMe &src)
-    : pairs(src.pairs), main(src.main), append(src.append) {}
+PmergeMe::PmergeMe(const PmergeMe &src) :
+  deque_pairs(src.deque_pairs), deque_main(src.deque_main),
+  deque_append(src.deque_append), dinput(src.dinput),
+  pairs(src.pairs), main(src.main), append(src.append), input(src.input) {}
 
 PmergeMe::~PmergeMe() {}
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &rhs) {
   PmergeMe temp(rhs);
+  std::swap(this->deque_pairs, temp.deque_pairs);
+  std::swap(this->deque_main, temp.deque_main);
+  std::swap(this->deque_append, temp.deque_append);
+  std::swap(this->dinput, temp.dinput);
   std::swap(this->pairs, temp.pairs);
   std::swap(this->main, temp.main);
-  std::swap(this->main, temp.append);
+  std::swap(this->append, temp.append);
+  std::swap(this->input, temp.input);
   return *this;
 }
 
