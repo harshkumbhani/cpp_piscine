@@ -33,7 +33,7 @@ int main() {
                                                         sizeof(numsVector[0]));
   vector2.push_back(42);
 
-  int numsList[] = {5 ,3, 17, -2, 9, 11};
+  int numsList[] = {5, 3, 17, -2, 9, 11};
   std::list<int> list1(numsList,
                        numsList + sizeof(numsList) / sizeof(numsList[0]));
   std::list<int> list2(numsList,
